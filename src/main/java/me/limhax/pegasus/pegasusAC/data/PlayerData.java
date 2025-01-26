@@ -1,7 +1,7 @@
 package me.limhax.pegasus.pegasusAC.data;
 
+import com.github.retrooper.packetevents.util.Vector3d; // PacketEvents Vector3d
 import org.bukkit.entity.Player;
-import org.joml.Vector3d;
 
 public class PlayerData {
     private final Player player;
@@ -19,9 +19,9 @@ public class PlayerData {
 
     // Getters & Setters
     public Vector3d getPosition() { return position; }
-    public void setPosition(double x, double y, double z) {
+    public void setPosition(Vector3d position) { // Javítva: Vector3d paraméter
         this.lastPosition = this.position;
-        this.position = new Vector3d(x, y, z);
+        this.position = position;
     }
     public boolean isOnGround() { return onGround; }
     public void setOnGround(boolean onGround) { this.onGround = onGround; }
@@ -29,4 +29,5 @@ public class PlayerData {
     public void setVelocity(Vector3d velocity) { this.velocity = velocity; }
     public long getLastTeleportTime() { return lastTeleportTime; }
     public void setLastTeleportTime(long time) { this.lastTeleportTime = time; }
+    public Player getPlayer() { return player; }
 }

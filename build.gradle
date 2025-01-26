@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1' // Shadow plugin hozzáadva
 }
 
 group = 'me.limhax.pegasus'
@@ -22,17 +23,17 @@ repositories {
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT"
-    implementation "com.github.retrooper.packetevents:spigot:2.2.0" // Módosított formátum
+    compileOnly "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT" // Paper 1.20.1
+    implementation "com.github.retrooper.packetevents:spigot:2.2.0" // PacketEvents 2.2.0
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(17) // Java 17
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-    options.release.set(17)
+    options.release.set(17) // Java 17
 }
 
 processResources {
@@ -42,4 +43,15 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+// Shadow plugin konfiguráció
+shadowJar {
+    archiveClassifier.set('') // Ne legyen "-all" suffix a JAR fájl nevében
+    relocate 'com.github.retrooper.packetevents', 'me.limhax.pegasus.libs.packetevents' // Relocate PacketEvents
+}
+
+// Alapértelmezett build task Shadow JAR létrehozásával
+tasks.build {
+    dependsOn shadowJar
 }

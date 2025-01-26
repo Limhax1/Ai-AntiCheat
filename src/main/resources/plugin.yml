@@ -1,6 +1,6 @@
 name: PegasusAC
 version: '1.0.0'
-main: me.limhax.pegasus.pegasusAC.PegasusAC
+main: me.limhax.pegasus.pegasusAC.AiAntiCheat
 api-version: '1.20'
 load: STARTUP
 authors: [ Limhax ]

@@ -1,5 +1,6 @@
 package me.limhax.pegasus.pegasusAC;
 
+import com.github.retrooper.packetevents.PacketEvents;
 import me.limhax.pegasus.pegasusAC.Listeners.MovementListener;
 import me.limhax.pegasus.pegasusAC.manager.PlayerDataManager;
 import me.limhax.pegasus.pegasusAC.manager.ViolationManager;
@@ -17,8 +18,8 @@ public final class AiAntiCheat extends JavaPlugin {
         violationManager = new ViolationManager();
 
         // PacketEvents inicializálása
-        PacketEvents.get().init(this);
-        PacketEvents.get().registerListener(new MovementListener());
+        PacketEvents.getAPI().init();
+        PacketEvents.getAPI().getEventManager().registerListener(new MovementListener());
     }
 
     public static AiAntiCheat getInstance() { return instance; }
