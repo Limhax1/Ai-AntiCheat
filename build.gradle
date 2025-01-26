@@ -47,8 +47,8 @@ processResources {
 
 // Shadow plugin konfiguráció
 shadowJar {
-    archiveClassifier.set('') // Ne legyen "-all" suffix a JAR fájl nevében
-    relocate 'com.github.retrooper.packetevents', 'me.limhax.pegasus.libs.packetevents' // Relocate PacketEvents
+    archiveClassifier.set('')
+    relocate 'com.github.retrooper.packetevents', 'me.limhax.pegasus.libs.packetevents'
 }
 
 // Alapértelmezett build task Shadow JAR létrehozásával

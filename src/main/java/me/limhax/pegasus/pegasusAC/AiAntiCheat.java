@@ -1,6 +1,7 @@
 package me.limhax.pegasus.pegasusAC;
 
 import com.github.retrooper.packetevents.PacketEvents;
+import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import me.limhax.pegasus.pegasusAC.Listeners.MovementListener;
 import me.limhax.pegasus.pegasusAC.manager.PlayerDataManager;
 import me.limhax.pegasus.pegasusAC.manager.ViolationManager;
@@ -10,6 +11,14 @@ public final class AiAntiCheat extends JavaPlugin {
     private static AiAntiCheat instance;
     private PlayerDataManager playerDataManager;
     private ViolationManager violationManager;
+
+    @Override
+    public void onLoad() {
+        instance = this;
+
+        PacketEvents.setAPI(SpigotPacketEventsBuilder.build(this));
+        PacketEvents.getAPI().load();
+    }
 
     @Override
     public void onEnable() {
